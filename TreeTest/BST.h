@@ -135,6 +135,16 @@ public:
 			}
 		}
 	}
+
+	//计算二叉树以subTree为根的节点个数
+	int Size(BinTreeNode<T>* subTree) const
+	{
+		if(subTree == NULL)
+		{
+			return 0;
+		}
+		return 1 + Size(subTree->leftChild) + Size(subTree->rightChild);
+	}
 protected:
 	//根据广义表创建二叉树
 	void CreateBinTree(BinTreeNode<T> *&BT)
