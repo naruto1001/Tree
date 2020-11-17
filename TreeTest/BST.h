@@ -136,6 +136,24 @@ public:
 		}
 	}
 
+	//使用前序遍历和中序遍历创建二叉树
+	void CreateBindTreeBy_Per_In(BinTreeNode<T>* cur, const char *pre, const char *in, int n)
+	{
+		if(n <= 0)
+		{
+			cur = NULL;
+			return;
+		}
+		int k = 0;
+		while (pre[0] != in[k])//在中序中找到pre[0]的值
+		{
+			k++;
+		}
+		cur = new BinTreeNode<T>(in[k]);
+		CreateBindTreeBy_Per_In(cur->leftChild, pre + 1, in, k);
+		CreateBindTreeBy_Per_In(cur->rightChild, pre + k + 1, in + k + 1, n - k - 1);
+	}
+
 	//计算二叉树以subTree为根的节点个数
 	int Size(BinTreeNode<T>* subTree) const
 	{
